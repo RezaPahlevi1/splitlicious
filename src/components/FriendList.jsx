@@ -1,7 +1,7 @@
 import { FaUserFriends } from "react-icons/fa";
 import { Friend } from "./Friend";
 
-export function FriendList({ friend, onFriendActive }) {
+export function FriendList({ friend, onFriendActive, onSplitBillActive }) {
   return (
     <div className="max-w-screen border-2 flex flex-col border-gray-400/10 p-2 m-4 rounded-lg bg-white shadow-xs">
       <div className="flex flex-row items-center">
@@ -10,7 +10,11 @@ export function FriendList({ friend, onFriendActive }) {
       </div>
       <div className="flex flex-col gap-3">
         {friend.map((list) => (
-          <Friend list={list} key={list.id} />
+          <Friend
+            onSplitBillActive={onSplitBillActive}
+            list={list}
+            key={list.id}
+          />
         ))}
       </div>
       <div className="justify-center items-center flex flex-row text-center">

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import "./App.css";
 import { Navbar } from "./components/Navbar";
-import { FaCalculator, FaUserFriends } from "react-icons/fa";
+import { FaUserFriends } from "react-icons/fa";
 import { AddFriendForm } from "./components/AddFriendForm";
-import { Friend } from "./components/Friend";
 import { FriendList } from "./components/FriendList";
+import { StaticContainer } from "./components/StaticContainer";
+import { SplitBillForm } from "./components/SplitBillForm";
 
 function App() {
   const listTeman = [
@@ -33,6 +34,7 @@ function App() {
 
   const [friendActive, setFriendActive] = useState(false);
   const [friend, setFriend] = useState([]);
+  const [splitBillActive, setSplitBillActive] = useState(false);
 
   function handleAddFriend(friend) {
     setFriend((friends) => [...friends, friend]);
@@ -40,35 +42,36 @@ function App() {
   }
 
   function handleFriendActive() {
+    setSplitBillActive(false);
     setFriendActive(!friendActive);
+  }
+
+  function HandleSplitBillActive() {
+    setFriendActive(false);
+    setSplitBillActive(!splitBillActive);
   }
 
   return (
     <>
       <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50">
         <Navbar />
-        <FriendList friend={friend} onFriendActive={handleFriendActive} />
-        {!friendActive ? (
-          <StaticContainer />
-        ) : (
+        <FriendList
+          friend={friend}
+          onSplitBillActive={HandleSplitBillActive}
+          onFriendActive={handleFriendActive}
+        />
+        {friendActive ? (
           <AddFriendForm
             onAddFriend={handleAddFriend}
             onFriendActive={handleFriendActive}
           />
+        ) : splitBillActive ? (
+          <SplitBillForm />
+        ) : (
+          <StaticContainer />
         )}
       </div>
     </>
-  );
-}
-
-function SplitBillContainer() {}
-
-function StaticContainer() {
-  return (
-    <div className="max-w-screen border-2 items-center py-20 mb-5 flex flex-col border-gray-400/10 p-2 m-4 rounded-lg bg-white shadow-xs">
-      <FaCalculator />
-      <p>Select a friend to split the bill</p>
-    </div>
   );
 }
 

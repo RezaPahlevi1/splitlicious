@@ -1,6 +1,6 @@
-export function Friend({ list }) {
+export function Friend({ list, onSplitBillActive }) {
   return (
-    <div className="p-5 rounded-md flex flex-row mx-5 justify-between bg-gray-400/5 shadow-xs border border-gray-300/30">
+    <div className="items-center p-5 rounded-md flex flex-row mx-5 justify-between bg-gray-400/5 shadow-xs border border-gray-300/30">
       <div className="flex flex-col gap-1">
         <h1>{list.name}</h1>
         {list.balance > 0 && (
@@ -20,7 +20,10 @@ export function Friend({ list }) {
         )}
       </div>
       <div>
-        <button className="p-2 px-4 rounded-xl cursor-pointer bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
+        <button
+          onClick={onSplitBillActive}
+          className="p-2 px-4 rounded-xl cursor-pointer bg-gradient-to-r from-purple-600 to-indigo-600 text-white"
+        >
           Select
         </button>
       </div>
