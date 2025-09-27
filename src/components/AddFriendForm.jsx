@@ -3,18 +3,16 @@ import { useState } from "react";
 export function AddFriendForm({ onFriendActive, onAddFriend }) {
   const [name, setName] = useState("");
   const [balance, setBalance] = useState(0);
-  const [image, setImage] = useState("");
 
   function HandleSubmit(e) {
     e.preventDefault();
 
     if (!name) return;
 
-    const newFriend = { id: crypto.randomUUID(), name, balance, image };
+    const newFriend = { id: crypto.randomUUID(), name, balance };
 
     onAddFriend(newFriend);
 
-    setImage("");
     setName("");
     setBalance(0);
   }
@@ -34,16 +32,7 @@ export function AddFriendForm({ onFriendActive, onAddFriend }) {
               className="border border-gray-400/40 p-3 rounded-md"
               value={name}
               onChange={(e) => setName(e.target.value)}
-            ></input>
-
-            <label>Profile Picture (Optional)</label>
-            <input
-              type="text"
-              placeholder="/image/blablabla link"
-              className="border border-gray-400/40 p-3 rounded-md"
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
-            ></input>
+            />
           </div>
           <div className="grid grid-cols-4 gap-3 pt-5">
             <button

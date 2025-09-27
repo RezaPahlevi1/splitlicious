@@ -5,7 +5,7 @@ export function Friend({ list, onSelection }) {
         <h1>{list.name}</h1>
         {list.balance > 0 && (
           <h1 className="text-green-500">
-            {list.name} owes you ${list.balance}$
+            {list.name} owes you ${list.balance}
           </h1>
         )}
         {list.balance < 0 && (
@@ -14,9 +14,7 @@ export function Friend({ list, onSelection }) {
           </h1>
         )}
         {list.balance === 0 && (
-          <h1 className="text-black/50">
-            {list.name} owes you nothing and you don't owe them anything either
-          </h1>
+          <h1 className="text-black/50">{list.name} and you are even</h1>
         )}
       </div>
       <div>
