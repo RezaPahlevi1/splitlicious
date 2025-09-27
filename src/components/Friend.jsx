@@ -1,4 +1,4 @@
-export function Friend({ list, onSplitBillActive }) {
+export function Friend({ list, onSelection }) {
   return (
     <div className="items-center p-5 rounded-md flex flex-row mx-5 justify-between bg-gray-400/5 shadow-xs border border-gray-300/30">
       <div className="flex flex-col gap-1">
@@ -21,7 +21,7 @@ export function Friend({ list, onSplitBillActive }) {
       </div>
       <div>
         <button
-          onClick={onSplitBillActive}
+          onClick={() => onSelection(list)}
           className="p-2 px-4 rounded-xl cursor-pointer bg-gradient-to-r from-purple-600 to-indigo-600 text-white"
         >
           Select
