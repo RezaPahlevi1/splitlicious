@@ -13,6 +13,10 @@ function App() {
   const [splitBillActive, setSplitBillActive] = useState(false);
   const [selectedFriend, setSelectedFriend] = useState(null);
 
+  function HandleDeletefriend(id) {
+    setFriend((friends) => friends.filter((friend) => friend.id !== id));
+  }
+
   function handleAddFriend(friend) {
     setFriend((friends) => [...friends, friend]);
     setFriendActive(false);
@@ -43,6 +47,7 @@ function App() {
       <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50">
         <Navbar />
         <FriendList
+          onDeleteFriend={HandleDeletefriend}
           friend={friend}
           onSplitBillActive={HandleSplitBillActive}
           onFriendActive={handleFriendActive}

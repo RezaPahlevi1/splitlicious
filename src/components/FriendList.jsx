@@ -6,6 +6,7 @@ export function FriendList({
   onFriendActive,
   onSplitBillActive,
   onSelection,
+  onDeleteFriend,
 }) {
   return (
     <div className="max-w-screen border-2 flex flex-col border-gray-400/10 p-2 m-4 rounded-lg bg-white shadow-xs">
@@ -19,6 +20,7 @@ export function FriendList({
             onSplitBillActive={onSplitBillActive}
             list={list}
             onSelection={onSelection}
+            onDeleteFriend={onDeleteFriend}
             key={list.id}
           />
         ))}

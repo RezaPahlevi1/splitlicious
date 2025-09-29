@@ -1,4 +1,4 @@
-export function Friend({ list, onSelection }) {
+export function Friend({ list, onSelection, onDeleteFriend }) {
   return (
     <div className="items-center p-5 rounded-md flex flex-row mx-5 justify-between bg-gray-400/5 shadow-xs border border-gray-300/30">
       <div className="flex flex-col gap-1">
@@ -23,6 +23,12 @@ export function Friend({ list, onSelection }) {
           className="p-2 px-4 rounded-xl cursor-pointer bg-gradient-to-r from-purple-600 to-indigo-600 text-white"
         >
           Select
+        </button>
+        <button
+          onClick={() => onDeleteFriend(list.id)}
+          className="ml-2 p-2 px-4 rounded-xl cursor-pointer bg-gradient-to-r from-red-600 to-orange-600 text-white"
+        >
+          Delete
         </button>
       </div>
     </div>
