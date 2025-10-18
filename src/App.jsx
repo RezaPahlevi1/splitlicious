@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { Navbar } from "./components/Navbar";
 import { FaUserFriends } from "react-icons/fa";
@@ -9,7 +9,15 @@ import { SplitBillForm } from "./components/SplitBillForm";
 
 function App() {
   const [friendActive, setFriendActive] = useState(false);
-  const [friend, setFriend] = useState([]);
+  const [friend, setFriend] = useState(function () {
+    try {
+      const storedValue = localStorage.getItem("friend");
+      return storedValue ? JSON.parse(storedValue) || [] : [];
+    } catch (error) {
+      console.error("Failed to read data from local storage", error);
+      return [];
+    }
+  });
   const [splitBillActive, setSplitBillActive] = useState(false);
   const [selectedFriend, setSelectedFriend] = useState(null);
 
@@ -41,6 +49,17 @@ function App() {
       )
     );
   }
+
+  useEffect(
+    function () {
+      try {
+        localStorage.setItem("friend", JSON.stringify(friend));
+      } catch (error) {
+        console.error("Failed to save data to local storage", error);
+      }
+    },
+    [friend]
+  );
 
   return (
     <>
